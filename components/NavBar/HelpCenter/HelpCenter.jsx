@@ -4,7 +4,7 @@ import Link from "next/link";
 //INTERNAL IMPORTS
 import Style from './HelpCenter.module.css';
 
-const Helpcenter = () => {
+const HelpCenter = () => {
   const helpCenter=[
     {
       name:"About",
@@ -30,7 +30,7 @@ const Helpcenter = () => {
   return (
     <div className={Style.box}>
       {helpCenter.map((el,i) => (
-        <div className={Style.helpCenter}>
+        <div  key={i+1} className={Style.helpCenter}>
           <Link href={{pathname: `${el.link}`}}>
             {el.name}
           </Link>
@@ -40,4 +40,4 @@ const Helpcenter = () => {
   )
 }
 
-export default Helpcenter
+export default HelpCenter

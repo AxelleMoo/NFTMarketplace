@@ -9,7 +9,7 @@ import {Button} from '../componentsindex';
 import images from '../../img';
 
 import Style from './NavBar.module.css';
-import {Discover, Helpcenter, Notification, Profile, Sidebar} from './index';
+import {Discover, HelpCenter, Notification, Profile, Sidebar} from './index';
 
 const NavBar = () => {
   const[discover, setDiscover] = useState(false);
@@ -93,7 +93,7 @@ const NavBar = () => {
               <p onClick={(e) => openMenu(e)}>Help Center</p>
               {help && (
                 <div className={Style.navbar_container_right_help_box}>
-                    <Helpcenter/>
+                    <HelpCenter/>
                 </div>
               )}
             </div>
