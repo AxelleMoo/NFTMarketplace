@@ -26,11 +26,11 @@ const FollowerTabCard = ({i, el}) => {
 
       <div className={Style.FollowerTabCard_box}>
         <div className={Style.FollowerTabCard_box_img}>
-          <Image className={Style.FollowerTabCard_box_img_img} src={images.creatorbackground1} alt="profile background" width={500} height={300} />
+          <Image className={Style.FollowerTabCard_box_img_img} src={el.background} alt="profile background" width={500} height={300} />
         </div>
 
         <div className={Style.FollowerTabCard_box_profile}>
-          <Image className={Style.FollowerTabCard_box_profile_img} alt="profile picture" width={80} height={80} src={images.user1}/>
+          <Image className={Style.FollowerTabCard_box_profile_img} alt="profile picture" width={80} height={80} src={el.user}/>
         </div>
         <div className={Style.FollowerTabCard_box_info}>
           <div className={Style.FollowerTabCard_box_info_name}>

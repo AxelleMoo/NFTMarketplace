@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // INTERNAL IMPORT
 import Style from '../styles/index.module.css';
-import { HeroSection,Service, BigNFTSlider, Subscribe, Title, Category, Filter, NFTCard, Collection, FollowerTab, AudioLive,Slider } from '@/components/componentsindex';
+import { HeroSection,Service, BigNFTSlider, Subscribe, Title, Category, Filter, NFTCard, Collection, FollowerTab, AudioLive,Slider, Brand, Video } from '@/components/componentsindex';
+import { NFTMarktplaceContext } from '@/Context/NFTMarketplaceContext';
 
 const Home = () => {
+  const {checkIfWalletConnected} = useContext(NFTMarktplaceContext);
+
+  useEffect(() => {
+    checkIfWalletConnected
+  }, []);
+  
   return (
     <div className={Style.homePage}>
       <HeroSection/>
@@ -23,7 +30,8 @@ const Home = () => {
       <Title heading="Brows by category" paragraph="Explore the NFTs in the most categories."/>
       <Category/>
       <Subscribe/>
-      
+      <Brand/>
+      <Video/>
     </div>
   )
 }

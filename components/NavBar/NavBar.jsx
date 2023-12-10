@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useContext} from 'react'
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,6 +10,9 @@ import images from '../../img';
 
 import Style from './NavBar.module.css';
 import {Discover, HelpCenter, Notification, Profile, Sidebar} from './index';
+
+//IMPORT FROM SC
+import { NFTMarktplaceContext } from '@/Context/NFTMarketplaceContext';
 
 const NavBar = () => {
   const[discover, setDiscover] = useState(false);
@@ -62,6 +65,10 @@ const NavBar = () => {
       setOpenSideMenu(false);
     }
   }
+
+  //SC SECTION
+  const {currentAccount, connectWallet} = useContext(NFTMarktplaceContext);
+
   return (
     <div className={Style.navbar}>
       <div className={Style.navbar_container}>
@@ -105,7 +112,13 @@ const NavBar = () => {
 
             {/* CREATE BUTTON SECTION */} 
             <div className={Style.navbar_container_right_button}>
-              <Button btnName="Create" handleClick={() => {}}/>
+              {currentAccount == " " ? (<Button btnName="Connect" handleClick={() => connectWallet()}/>
+              ) : (
+                <a href='/uploadNFT'>
+                   <Button btnName="Create" handleClick={() => {}}/>
+                </a>
+              )}
+              
             </div>
 
             {/* USER PROFILE */} 
@@ -129,7 +142,11 @@ const NavBar = () => {
       {
         openSideMenu && (
           <div className={Style.sideBar}>
-            <Sidebar setOpenSideMenu={setOpenSideMenu}/>
+            <Sidebar 
+              setOpenSideMenu={setOpenSideMenu} 
+              currentAccount = {currentAccount}
+              connectWallet = {connectWallet}
+            />
           </div>
         )
       }

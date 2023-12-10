@@ -9,10 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^4.9.3",
+    "axios": "^1.6.2",
+    "ether": "^0.0.9",
+    "ethers": "^6.9.0",
     "framer-motion": "^10.16.12",
+    "ipfs-http-client": "^60.0.1",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0"
+    "react-dropzone": "^14.2.3",
+    "react-icons": "^4.12.0",
+    "web3modal": "^1.9.9"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.4.1",
+    "hardhat": "^2.19.2"
   }
 }

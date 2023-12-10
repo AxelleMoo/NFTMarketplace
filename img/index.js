@@ -41,8 +41,30 @@ import nft_image_2 from "./nft-image-2.png";
 import nft_image_3 from "./nft-image-3.png";
 import musiceWave from "./musicwave.png";
 import update from "./update.png";
+import earn from "./eran.png";
+import nftvideo from "./nftvideo.png"
+import provider1 from "./provider-1.png"
+import provider2 from "./provider-2.png"
+import provider3 from "./provider-3.png"
+import provider4 from "./provider-4.png"
+import founder1 from "./founder1.jpg"
+import founder2 from "./founder2.jpg"
+import founder3 from "./founder3.jpg"
+import founder4 from "./founder4.jpg"
+import hero2 from "./hero2.png"
 
 export default {
+  hero2,
+  founder1,
+  founder2,
+  founder3,
+  founder4,
+  provider1,
+  provider2,
+  provider3,
+  provider4,
+  nftvideo,
+  earn,
   collection,
   update,
   musiceWave,
