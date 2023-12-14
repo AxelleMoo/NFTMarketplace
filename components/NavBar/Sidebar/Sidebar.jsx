@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {GrClose} from 'react-icons/gr';
 import {TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter, TiSocialYoutube, TiSocialInstagram, TiArrowSortedDown, TiArrowSortedUp} from 'react-icons/ti';
+import { useRouter } from 'next/router';
 
 //INTERNAL IMPORT
 import Style from './Sidebar.module.css';
@@ -68,6 +69,8 @@ const Sidebar = ({setOpenSideMenu, currentAccount, connectWallet}) => {
       link:"subscription"
     }
   ]
+
+  const router = useRouter();
 
   const openDiscoverMenu = () =>{
     if(!openDiscover){
@@ -155,9 +158,8 @@ const Sidebar = ({setOpenSideMenu, currentAccount, connectWallet}) => {
         {
           currentAccount== " " ? (<Button btnName="Connect Wallet" handleClick={() => connectWallet()}/>
           ) : (
-            <a href='/uploadNFT'>
-              <Button btnName="Create" handleClick={() => {}}/>
-            </a>
+            <Button btnName="Create" handleClick={() => router.push("/uploadNFT")}/>
+            
           )
         }
         
