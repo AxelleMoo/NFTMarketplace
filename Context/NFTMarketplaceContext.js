@@ -48,8 +48,8 @@ const connectingWithSmartcontract = async()=> {
         return contract
 
     }catch(error) {
-        console.log(error);
-        console.log("something went wrong while connecting with smart contract")
+        setOpenError(true);
+        setError("something went wrong while connecting with smart contract");
     }
 }
 
@@ -60,6 +60,8 @@ export const NFTMarketplaceProvider = (({children}) => {
     const titleData = "Discover, collect, and sell NFTS"
     //___USESTATE
     const [currentAccount, setCurrentAccount] = useState(" ");
+    const [error, setError] = useState("");
+    const [openError, setOpenError] = useState(false);
     const router = useRouter();
 
     //UPLOAD TO IPFS FUNCTION
@@ -104,7 +106,7 @@ export const NFTMarketplaceProvider = (({children}) => {
     //CHECK IF WALLET IS CONNECTED
     const checkIfWalletConnected = async() => {
         try{
-            if(!window.ethereum) return console.log("Install Metamask");
+            if(!window.ethereum) return (setOpenError(true), setError("Install Metamask"));
 
             const accounts = await window.ethereum.request({
                 method: "eth_accounts"
@@ -113,12 +115,14 @@ export const NFTMarketplaceProvider = (({children}) => {
             if(accounts.length){
                 setCurrentAccount(accounts[0]);
             }else{
-                console.log("No account found")
+                setOpenError(true); 
+                setError("No account found")
             }
 
         }
         catch(error){
-            console.log("Something wrong while connecting to wallet")
+            setOpenError(true); 
+            setError("Something wrong while connecting to wallet")
         }
     }
 
@@ -129,7 +133,7 @@ export const NFTMarketplaceProvider = (({children}) => {
     //CONNECT WALLET FUNCTION
     const connectWallet = async()=>{
         try{
-            if(!window.ethereum) return console.log("Install Metamask");
+            if(!window.ethereum) return (setOpenError(true), setError("Install Metamask"));
 
             const accounts = await window.ethereum.request({
                 method: "eth_requestAccounts"
@@ -137,14 +141,15 @@ export const NFTMarketplaceProvider = (({children}) => {
 
             setCurrentAccount(accounts[0]);
         }catch(error){
-            console.log("Error while connecting to wallet")
+            setOpenError(true);
+            setError("Error while connecting to wallet")
         }
     }
 
     //CREATE NFT
     const createNFT = async(name, price, image, description, router)=>{
         if (!name || !description || !price || !image){
-            return console.log("Data is missing")
+            return (setOpenError(true), setError("Data is missing"))
         }
         const data = JSON.stringify({ name, description, image});
 
@@ -165,29 +170,38 @@ export const NFTMarketplaceProvider = (({children}) => {
             console.log(url)
 
             await createSale(url, price);
+            router.push('./searchPage')
 
         }catch(error){
-            console.log("Error while creating NFT")
+            setOpenError(true); 
+            setError("Error while creating NFT")
         }
     }
 
     const createSale = async(url, formInputPrice, isReselling, id)=>{
         try{
-            
-            // const price = ethers.utils.parseUnits(formInputPrice, "ether")
-            const price = ethers.parseUnits(formInputPrice, "ether")
-            const contract = await connectingWithSmartcontract()
+            console.log(url, formInputPrice, isReselling, id);
+            const price = ethers.parseUnits(formInputPrice, "ether");
+
+            const contract = await connectingWithSmartcontract();
 
             const listingPrice = await contract.getListingPrice();
 
-            const transaction = !isReselling ? await contract.createToken(url, price, {value: listingPrice.toString()
-            }) : await contract.reSellToken(url, price, {value: listingPrice.toString()})
+            const transaction = !isReselling
+                ? await contract.createToken(url, price, {
+                    value: listingPrice.toString(),
+                })
+                : await contract.reSellToken(id, price, {
+                    value: listingPrice.toString(),
+                });
 
             await transaction.wait();
-            router.push('./searchPage')
+            console.log(transaction)
+            await transaction.wait();
+            
         }catch(error){
-            console.log(error)
-            console.log("error while creating sell")
+            setOpenError(true); 
+            setError("error while creating sell")
         }
     }
 
@@ -229,8 +243,8 @@ export const NFTMarketplaceProvider = (({children}) => {
         return items;
 
         }catch(error){
-            console.log(error)
-            console.log("error while fetching nft")
+            setOpenError(true); 
+            setError("error while fetching nft")
         }
     }
 
@@ -279,8 +293,9 @@ export const NFTMarketplaceProvider = (({children}) => {
             );
         return items;
         }catch(error){
-            console.log(error)
-            console.log("fail while fetching my nfts")
+   
+            setOpenError(true); 
+            setError("fail while fetching my nfts")
         }
     }
 
@@ -303,8 +318,8 @@ export const NFTMarketplaceProvider = (({children}) => {
             await transaction.wait()
             router.push("/author")
         } catch (error){
-            console.log(error)
-            console.log("Error while buying NFT")
+            setOpenError(true); 
+            setError("Error while buying NFT")
         }
     }
 
@@ -320,7 +335,11 @@ export const NFTMarketplaceProvider = (({children}) => {
             fetchMyNFTsOrListedNFTs,
             buyNFT,
             checkIfWalletConnected,
-            currentAccount
+            currentAccount, 
+            createSale,
+            setOpenError, 
+            openError, 
+            error
             }}>
             {children}
         </NFTMarktplaceContext.Provider>

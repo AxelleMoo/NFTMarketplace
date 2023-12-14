@@ -12,6 +12,7 @@ import {
 } from "react-icons/ti";
 import { BiTransferAlt, BiDollar } from "react-icons/bi";
 import Link from "next/link"
+import { useRouter } from 'next/router';
 
 import Style from './NFTDescription.module.css'
 import images from "../../img";
@@ -49,6 +50,8 @@ const NFTDescription = ( {nft}) => {
     images.user6,
     images.user5,
   ];
+
+  const router = useRouter();
 
   const openSocial = () => {
     if (!social) {
@@ -93,7 +96,7 @@ const NFTDescription = ( {nft}) => {
     }
   };
 
-  const {buyNFT, currentAccount} = useContext(NFTMarktplaceContext);
+  const {buyNFT, currentAccount, createSale} = useContext(NFTMarktplaceContext);
   return (
     <div className={Style.NFTDescription}>
         <div className={Style.NFTDescription_box}>
@@ -209,7 +212,10 @@ const NFTDescription = ( {nft}) => {
                         {currentAccount == nft.seller.toLowerCase () ? (
                             <p>You cannot buy your own NFT.</p>
                         ) : currentAccount === nft.owner.toLowerCase() ? (
-                            <Button btnName="List on Marketplace" handleClick={() => {}} classStyle={Style.button} icon={<FaWallet />} />
+                            <Button btnName="List on Marketplace" handleClick={() => router.push(`/reSellToken?id=${nft.tokenId}&tokenURI=${nft.tokenURI}&price=${nft.price}`)} 
+                            classStyle={Style.button} 
+                            icon={<FaWallet />} 
+                            />
                         ) : (
                             <Button btnName="Buy NFT" handleClick={() => buyNFT(nft)} classStyle={Style.button} icon={<FaWallet />} />
                         )}
