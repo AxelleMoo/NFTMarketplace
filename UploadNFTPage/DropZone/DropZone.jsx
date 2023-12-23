@@ -40,11 +40,6 @@ const DropZone = ({
             <input {...getInputProps()}/>
             <div className={Style.DropZone_box_input}>
                 <p>{title}</p>
-                <div className={Style.DropZone_box_input_img}>
-                    <Image src={images.zgcmq} alt="upload" width={100} height={100} className={Style.DropZone_box_input_img_img}/>
-                </div>
-                <p>{heading}</p>
-                <p>{subHeading}</p>
             </div>
         </div>
 

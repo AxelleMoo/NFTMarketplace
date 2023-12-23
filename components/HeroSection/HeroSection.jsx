@@ -18,7 +18,14 @@ const HeroSection = () => {
                 <p>Discover the most outstanding NFTS in all topics and sell them</p>
                 <Button btnName='Start your search'/>
             </div>
-            
+            <div className={Style.heroSection_box_right}>
+            <Image
+              src={images.hero}
+              alt="Hero section"
+              width={600}
+              height={600}
+            />
+            </div>
         </div>
     </div>
   )
