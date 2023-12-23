@@ -6,6 +6,7 @@ import { HeroSection,Service, BigNFTSlider, Subscribe, Title, Category, Filter, 
 import { getTopCreators } from '@/TopCreators/TopCreator';
 import { NFTMarktplaceContext } from '@/Context/NFTMarketplaceContext';
 import { Loader } from '@/components/componentsindex';
+
 const Home = () => {
   const {checkIfWalletConnected} = useContext(NFTMarktplaceContext);
 
@@ -42,7 +43,6 @@ const Home = () => {
         <Loader/>
       ): (
         <FollowerTab TopCreators={creators}/>
-      
       )}
       <Title heading="Explore NFT Videos" paragraph="Explore the NFTs in the most categories."/>
       <Slider/>
@@ -50,7 +50,7 @@ const Home = () => {
       <Title heading="Featured NFTs" paragraph="Discover the most outstanding NFts in all topics of life."/>
       <Filter/>
       {nfts.length == 0 ? <Loader/> : <NFTCard NFTData={nfts}/>}
-      
+    
       <Title heading="Brows by category" paragraph="Explore the NFTs in the most categories."/>
       <Category/>
       <Subscribe/>
