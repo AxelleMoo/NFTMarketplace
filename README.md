@@ -1,16 +1,34 @@
-# Sample Hardhat Project
+# NFT Marketplace Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Overview
 
-Try running some of the following tasks:
+This project is an NFT (Non-Fungible Token) Marketplace built on the Polygon network using Next.js as the frontend framework, MongoDB as the database, Express.js for the API, and Hardhat for the blockchain-related functionalities.
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
-API Key: 87fe073fb3f2f06b672d
- API Secret: 8875b5caf24c75d1da325e181ca95f7336d5db159ceb3807aab6c64e51e13ea4
- JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJiNzg0MGZlMS1jOWZlLTQzMTctOTMxMi1hYjY3YmM0NWRkMWEiLCJlbWFpbCI6Im1vb3J0Z2F0LmF4ZWxsZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiODdmZTA3M2ZiM2YyZjA2YjY3MmQiLCJzY29wZWRLZXlTZWNyZXQiOiI4ODc1YjVjYWYyNGM3NWQxZGEzMjVlMTgxY2E5NWY3MzM2ZDVkYjE1OWNlYjM4MDdhYWI2YzY0ZTUxZTEzZWE0IiwiaWF0IjoxNzAyMDQ0OTExfQ.lIq3lLbHqkBqZ7onklF4DwCc1W6zMjst0dIiZyVdnoI
+## Features
+
+- **Next.js Frontend:** The project utilizes Next.js for building the user interface, providing a smooth and responsive experience for users.
+
+- **Polygon Network:** The NFT Marketplace is deployed on the Polygon network, leveraging its scalability and low transaction costs.
+
+- **MongoDB Database:** User and NFT data is stored in a MongoDB database, offering a flexible and scalable solution for data management.
+
+- **Express.js API:** The backend API is built with Express.js, handling user authentication, NFT transactions, and other server-side functionalities.
+
+- **Hardhat for Blockchain Development:** Hardhat is used as a development environment for Ethereum-based projects, enabling smart contract deployment and testing.
+
+## Getting Started
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/nft-marketplace.git
+   cd nft-marketplace
+2. **Install Dependencies**
+   npm install
+3. **Configure Environment Variables**
+   MONGODB_URI=your_mongodb_uri
+   POLYGON_RPC_URL=your_polygon_rpc_url
+   API_SECRET=your_api_secret
+4. **Run the project**
+   npm run dev
+
+
